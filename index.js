@@ -1,12 +1,10 @@
 import express from "express";
 import db from "./db/db.js";
-import productRouter from './routes/productoRoute.js'
 const app = express();
 const PORT = 3000;
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-app.use('/productos', productRouter)
 
 
 try {
