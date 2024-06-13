@@ -5,7 +5,8 @@ import {
   funcionMostrarProducto,
   funcionEditarProducto,
   funcionEliminarProducto,
-  funcionOrdenarProductos
+  funcionOrdenarProductos,
+  funcionFiltrarProductos
 } from "../controllers/productoController.js";
 
 const routes = express.Router();
@@ -19,5 +20,7 @@ routes.put("/productos/:id", funcionEditarProducto);
 routes.delete("/productos/:id", funcionEliminarProducto);
 
 routes.get("/ordenados/:cond", funcionOrdenarProductos);
+
+routes.get("/filtrar", funcionFiltrarProductos)
 
 export default routes;

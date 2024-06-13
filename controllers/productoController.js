@@ -4,7 +4,8 @@ import {
   mostrarProducto,
   editarProducto,
   eliminarProducto,
-  ordenarProductos
+  ordenarProductos,
+  filtrarProductos
 } from "../models/productoModel.js";
 
 const funcionCrearProducto = async (req, res) => {
@@ -63,6 +64,18 @@ const funcionOrdenarProductos = async (req, res) =>{
     res.status(200).json({productosOrdenados})
 }
 
+const funcionFiltrarProductos = async (req, res) =>{
+    const {nombre, minP, maxP, categoria, minC, maxC} = req.query
+
+    const productos = await filtrarProductos(nombre, minP, maxP, categoria, minC, maxC)
+    
+    if(productos == 0){
+        res.status(404).json({msg: "No se encontro ningun producto"})
+    }else{
+        res.status(200).json({productos})
+    }
+
+}
 
 
 
@@ -72,5 +85,6 @@ export {
   funcionMostrarProducto,
   funcionEditarProducto,
   funcionEliminarProducto,
-  funcionOrdenarProductos
+  funcionOrdenarProductos,
+  funcionFiltrarProductos
 };
